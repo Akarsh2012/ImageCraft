@@ -119,6 +119,19 @@ export const plans = [
   },
 ];
 
+interface TransformationType {
+  type: string;
+  title: string;
+  subTitle: string;
+  config: { [key: string]: boolean | string | { prompt?: string; removeShadow?: boolean; multiple?: boolean; to?: string } };
+}
+
+// Define the transformation types with an index signature
+interface TransformationTypes {
+  [key: string]: TransformationType;
+}
+
+
 export const transformationTypes = {
   restore: {
     type: "restore",
