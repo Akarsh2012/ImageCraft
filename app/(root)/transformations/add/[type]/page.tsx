@@ -4,15 +4,14 @@ import { transformationTypes } from '@/constants';
 import React from 'react';
 
 interface SearchParamProps {
-  params: {
-    type: keyof typeof transformationTypes; // Ensure type is valid by limiting to transformation keys
-  };
+  params: Promise<{
+    type: keyof typeof transformationTypes;
+  }>;
 }
 
-const AddTransformationTypePage = ({ params }: SearchParamProps) => {
-  const { type } = params;
+const AddTransformationTypePage = async ({ params }: SearchParamProps) => {
+  const { type } = await params;
 
-  // Access transformation type directly
   const transformation = transformationTypes[type];
 
   return (
@@ -24,7 +23,7 @@ const AddTransformationTypePage = ({ params }: SearchParamProps) => {
       <TransformationForm />
     </>
   );
-}
+};
 
 export default AddTransformationTypePage;
 
