@@ -9,10 +9,10 @@ interface SearchParamProps {
   };
 }
 
-const AddTransformationTypePage = async({ params }: SearchParamProps) => {
-  const { type } =await params;
+const AddTransformationTypePage = ({ params }: SearchParamProps) => {
+  const { type } = params;
 
-  // Access transformation type directly without async/await
+  // Access transformation type directly
   const transformation = transformationTypes[type];
 
   return (
@@ -27,3 +27,4 @@ const AddTransformationTypePage = async({ params }: SearchParamProps) => {
 }
 
 export default AddTransformationTypePage;
+
