@@ -1,35 +1,29 @@
-import Header from '@/components/shared/Header'
+import Header from '@/components/shared/Header';
 import TransformationForm from '@/components/shared/TransformationForm';
-import { transformationTypes } from '@/constants'
-import { getUserById } from '@/lib/actions/user.actions';
-// import { auth } from '@clerk/nextjs';
-import { redirect } from 'next/navigation';
+import { transformationTypes } from '@/constants';
+import React from 'react';
 
-const AddTransformationTypePage = async ({ params: { type } }: SearchParamProps) => {
-  // const { userId } = auth();
+interface SearchParamProps {
+  params: {
+    type: keyof typeof transformationTypes; // Ensure type is valid by limiting to transformation keys
+  };
+}
+
+const AddTransformationTypePage = async({ params }: SearchParamProps) => {
+  const { type } =await params;
+
+  // Access transformation type directly without async/await
   const transformation = transformationTypes[type];
-
-  // if(!userId) redirect('/sign-in')
-
-  // const user = await getUserById(userId);
 
   return (
     <>
-      <Header 
-        title={transformation.title}
-        subtitle={transformation.subTitle}
+      <Header
+        title={transformation?.title || 'Default Title'}
+        subtitle={transformation?.subTitle || 'Default Subtitle'}
       />
-    
-      {/* <section className="mt-10">
-        <TransformationForm 
-          action="Add"
-          userId={user._id}
-          type={transformation.type as TransformationTypeKey}
-          creditBalance={user.creditBalance}
-        />
-      </section> */}
+      <TransformationForm />
     </>
-  )
+  );
 }
 
-export default AddTransformationTypePage
+export default AddTransformationTypePage;
